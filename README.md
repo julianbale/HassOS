@@ -1,0 +1,1 @@
+Working configuration for HassOS
