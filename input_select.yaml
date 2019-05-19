@@ -1,0 +1,50 @@
+julian_status_dropdown:
+  name: Julian
+  options:
+  - Home
+  - Just Arrived
+  - Just Left
+  - Away
+  - Extended Away
+  initial: Home
+  
+mandy_status_dropdown:
+  name: Mandy
+  options:
+  - Home
+  - Just Arrived
+  - Just Left
+  - Away
+  - Extended Away
+  initial: Home
+  
+jennifer_status_dropdown:
+  name: Jennifer
+  options:
+  - Home
+  - Just Arrived
+  - Just Left
+  - Away
+  - Extended Away
+  initial: Home
+  
+anthony_status_dropdown:
+  name: Anthony
+  options:
+  - Home
+  - Just Arrived
+  - Just Left
+  - Away
+  - Extended Away
+  initial: Home
+  
+brendan_status_dropdown:
+  name: Brendan
+  options:
+  - Home
+  - Just Arrived
+  - Just Left
+  - Away
+  - Extended Away
+  initial: Home
+  

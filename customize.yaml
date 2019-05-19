@@ -1,0 +1,21 @@
+cover.front_gate:
+  device_class: garage
+  supported_features: 3
+cover.garage_left:
+  device_class: garage
+  supported_features: 3
+cover.garage_right:
+  device_class: garage
+  supported_features: 3
+input_boolean.is_julian_home:
+  icon: mdi:human-male
+input_boolean.is_brendan_home:
+  icon: mdi:human-male
+input_boolean.is_anthony_home:
+  icon: mdi:human-male
+input_boolean.is_jennifer_home:
+  icon: mdi:human-female
+input_boolean.is_mandy_home:
+  icon: mdi:human-female
+binary_sensor.entryway_camera_person_detected:
+  device_class: motion

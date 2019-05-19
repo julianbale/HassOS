@@ -1,0 +1,50 @@
+- platform: mqtt
+  name: 'Garage PIR'
+  payload_on: "E201DE"
+  device_class: motion
+  state_topic: "tele/rfbridge/RESULT"
+  value_template: '{{ value_json.RfReceived.Data }}'
+  off_delay: 5
+
+- platform: mqtt
+  name: 'Study PIR'
+  payload_on: "E3823E"
+  device_class: motion
+  state_topic: "tele/rfbridge/RESULT"
+  value_template: '{{ value_json.RfReceived.Data }}'
+  off_delay: 5
+  
+- platform: mqtt
+  name: "Front Gate Door Bell"
+  payload_on: "EA6DE3"
+  state_topic: "tele/rfbridge/RESULT"
+  value_template: "{{ value_json.RfReceived.Data }}"
+  off_delay: 5
+  
+- platform: mqtt
+  name: "Remote Button A"
+  payload_on: "75D1C0"
+  state_topic: "tele/rfbridge/RESULT"
+  value_template: "{{ value_json.RfReceived.Data }}"
+  off_delay: 5
+  
+- platform: mqtt
+  name: "Remote Button B"
+  payload_on: "75D10C"
+  state_topic: "tele/rfbridge/RESULT"
+  value_template: "{{ value_json.RfReceived.Data }}"
+  off_delay: 5
+  
+#- platform: mqtt
+#  name: "Remote Button Silver A"
+#  payload_on: "7BE3D4"
+#  state_topic: "tele/rfbridge/RESULT"
+#  value_template: "{{ value_json.RfReceived.Data }}"
+#  off_delay: 5
+  
+#- platform: mqtt
+#  name: "Remote Button Silver B"
+#  payload_on: "7BE3D2"
+#  state_topic: "tele/rfbridge/RESULT"
+#  value_template: "{{ value_json.RfReceived.Data }}"
+#  off_delay: 5

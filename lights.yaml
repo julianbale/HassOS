@@ -1,0 +1,57 @@
+- platform: osramlightify
+  host: 192.168.0.99
+  
+- platform: switch
+  name: Garage Light
+  entity_id: switch.garage_light
+
+- platform: group
+  name: Lounge Lights
+  entities: 
+   - light.lounge01
+   - light.lounge02
+   - light.lounge03
+   - light.lounge04
+   - light.lounge05
+   
+- platform: group
+  name: Outside Lights
+  entities: 
+    - light.outside_front_1
+    - light.outside_front_2
+    - light.outside_front_3
+    - light.outside_front_4
+    - light.outside_front_5
+    - light.outside_garage_1
+    - light.outside_garage_2
+    - light.outside_back_1
+    - light.outside_back_2
+    
+- platform: group
+  name: Kitchen Lights
+  entities:
+    - light.kitchen01
+    - light.kitchen02
+    - light.kitchen03
+    - light.kitchen04
+    - light.kitchen05
+    - light.kitchen06
+    
+- platform: group
+  name: Master Bedroom Lights
+  entities:
+     - light.master_bed_1
+     - light.master_bed_2
+     - light.master_bed_3
+     - light.master_bed_4
+     - light.master_bed_5
+     - light.master_bed_6
+     
+- platform: group
+  name: Rumpus Lights
+  entities:
+     - light.rumpus_1
+     - light.rumpus_2
+     - light.rumpus_3
+     - light.rumpus_4
+     - light.rumpus_5

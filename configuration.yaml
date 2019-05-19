@@ -1,0 +1,166 @@
+#Base Config
+homeassistant:
+  name: TheBaleFamily-New
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: metric
+  time_zone: Australia/Sydney
+  customize: !include customize.yaml
+
+http:
+  base_url: !secret base_url
+  server_port: !secret server_port
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+#  use_x_forwarded_for: true
+#  trusted_proxies:
+#    - 127.0.0.1
+#    - ::1
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+default_config:
+
+
+
+camera:
+  - platform: bom
+    location: Sydney
+
+#Services 
+frontend:
+history:
+logbook:
+map:
+config:
+sun:
+conversation:
+updater:
+system_health:
+person:
+ios:
+
+logger:
+  default: info
+
+#shell_command:
+#  disco_off: echo -e -n "\x01\x08\x00\xF2\x51\x01\x00\x05\x01\x51" > /dev/ttyACM0
+#  disco_on: echo -e -n "\x01\x08\x00\xF2\x51\x01\x01\x05\x01\x50" > /dev/ttyACM0
+
+alarm_control_panel:
+  - platform: manual
+    name: Alarm
+    code: !secret alarm_code
+    trigger_time: 300
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      delay_time: 0
+      pending_time: 0
+    armed_away:
+      delay_time: 60
+      pending_time: 30
+    triggered:
+      pending_time: 0
+
+#zwave:
+#  usb_path: /dev/ttyACM0
+#  network_key: "0x2e, 0xcc, 0xab, 0x1c, 0xa3, 0x7f, 0x0e, 0xb5, 0x70, 0x71, 0x2d, 0x98, 0x25, 0x43, 0xee, 0x0c"
+
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
+  binary_sensors:
+    monitored_conditions:
+      - 'online'
+      - 'person_detected'
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+ifttt:
+  key: !secret ifttt_api
+  
+konnected:
+  access_token: !secret konnected_token
+  api_host: https://192.168.0.100:8123
+  devices:
+    - id: bcddc2826f94
+      binary_sensors:
+        - zone: 1
+          type: motion
+          name: Lounge PIR
+        - zone: 2
+          type: motion
+          name: Rumpus PIR 
+        - zone: 3
+          type: motion
+          name: Hall PIR
+        - zone: 4
+          type: window
+          name: Front Windows
+        - zone: 5
+          type: window
+          name: Back Left Windows
+        - zone: 6
+          type: window
+          name: Back Right Windows
+      switches:
+        - zone: out
+          name: Siren
+
+remote:
+  - platform: harmony
+    name: Living Room Harmony Hub
+    host: 192.168.0.102
+    activity: Watch TV
+    
+discovery:
+  ignore:
+  - apple_tv
+  - samsung_tv
+
+  
+#recorder:
+#  db_url: !secret databaseurl
+  
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  server_id: 5666
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+#Includes
+cloud: !include cloud.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensors.yaml
+input_boolean: !include input_boolean.yaml
+switch: !include switches.yaml
+cover: !include covers.yaml
+#input_select: !include input_select.yaml 
+#device_tracker: !include device_tracker.yaml
+light: !include lights.yaml
+
+#panel_iframe:
+#  configurator:
+#    title: Configurator
+#    icon: mdi:wrench
+#    url: http://192.168.0.37:8123/configurator
+#  nodered:
+#    title: Node-RED
+#    icon: mdi:sitemap
+#    url: http://192.168.0.37:1880
+#  tasmoadmin:
+#    title: TasmoAdmin
+#    icon: mdi:access-point-network
+#    url: https://dsm.thebalefamily.com:9541
+#  esphome:
+#    title: ESPHome
+#    icon: mdi:chip
+#    url: http://192.168.0.37:6052

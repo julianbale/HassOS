@@ -1,0 +1,290 @@
+- platform: synologydsm
+  host: 192.168.0.98
+  username: !secret dsm_user
+  password: !secret dsm_password
+  monitored_conditions:
+  - cpu_total_load
+  - cpu_other_load
+  - cpu_user_load
+  - cpu_system_load
+  - cpu_1min_load
+  - cpu_5min_load
+  - cpu_15min_load
+  - memory_real_usage
+  - memory_total_real
+  - memory_cached
+  - memory_available_real
+  - network_up
+  - network_down
+  - disk_smart_status
+  - disk_status
+  - disk_exceed_bad_sector_thr
+  - disk_below_remain_life_thr
+  - disk_temp
+  - volume_status
+  - volume_device_type
+  - volume_size_total
+  - volume_size_used
+  - volume_percentage_used
+#  - volume_disk_temp_avg
+#  - volume_disk_temp_max
+#  - disk_name
+#  - disk_device
+#  - memory_size
+#  - memory_available_swap
+#  - memory_total_swap
+
+- platform: pi_hole
+  host: hassio.thebalefamily.com:4865
+  ssl: true
+  monitored_conditions:
+    - ads_blocked_today
+    - dns_queries_today
+    - unique_clients
+
+
+#Didn't seem to work
+#- platform: transport_nsw
+#  name: 'Riverstone'
+#  stop_id: '2765291'
+#  destination: 'Riverstone'
+#  api_key: !secret transport_nsw_api
+
+- platform: template
+  sensors:
+    sun_state:
+      friendly_name: "Sun State"
+      value_template: >-
+        {% if is_state('sun.sun', 'above_horizon') %}
+          up
+        {% else %}
+          down
+        {% endif %}
+      
+- platform: systemmonitor
+  resources:
+   - type: disk_use_percent
+     arg: /config
+   - type: load_1m
+   - type: load_5m
+   - type: load_15m
+   - type: last_boot
+
+- platform: bom
+  station: IDN60901.95753
+  monitored_conditions:
+    - apparent_t
+    - cloud
+    - gust_kmh
+    - rain_trace
+    - wind_dir
+    - wind_spd_kmh
+    - air_temp
+    - rel_hum
+    - weather
+    
+
+- platform: mqtt
+  name: "BLE Rumpus Online"
+  state_topic: "blemon/rumpus/status"
+#  value_template: "{{ value_json.RSSI }}"
+  availability_topic: "blemon/rumpus/status"
+  payload_available: "online"
+  payload_not_available: "offline"
+
+- platform: mqtt
+  name: "BLE Shed Online"
+  state_topic: "blemon/shed/status"
+#  value_template: "{{ value_json.RSSI }}"
+  availability_topic: "blemon/shed/status"
+  payload_available: "online"
+  payload_not_available: "offline"
+
+- platform: mqtt
+  name: "BLE Bedroom Online"
+  state_topic: "blemon/bedroom/status"
+#  value_template: "{{ value_json.RSSI }}"
+  availability_topic: "blemon/bedroom/status"
+  payload_available: "online"
+  payload_not_available: "offline"
+
+- platform: mqtt
+  name: "BLE Lounge Online"
+  state_topic: "blemon/lounge/status"
+#  value_template: "{{ value_json.RSSI }}"
+  availability_topic: "blemon/lounge/status"
+  payload_available: "online"
+  payload_not_available: "offline"
+  
+- platform: mqtt
+  state_topic: 'blemon/lounge/julianphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JulianLounge'
+
+- platform: mqtt
+  state_topic: 'blemon/rumpus/julianphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JulianRumpus'
+
+- platform: mqtt
+  state_topic: 'blemon/shed/julianphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JulianShed'
+  
+- platform: mqtt
+  state_topic: 'blemon/bedroom/julianphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JulianBedroom'
+  
+- platform: min_max
+  name: "Julian Home Confidence"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.julianlounge
+    - sensor.julianrumpus
+    - sensor.julianshed
+    - sensor.julianbedroom
+    
+- platform: mqtt
+  state_topic: 'blemon/lounge/brendanphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'BrendanLounge'
+
+- platform: mqtt
+  state_topic: 'blemon/rumpus/brendanphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'BrendanRumpus'
+
+- platform: mqtt
+  state_topic: 'blemon/shed/brendanphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'BrendanShed'
+
+- platform: mqtt
+  state_topic: 'blemon/bedroom/brendanphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'BrendanBedroom'
+  
+  
+- platform: min_max
+  name: "Brendan Home Confidence"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.brendanlounge
+    - sensor.brendanrumpus
+    - sensor.brendanshed
+    - sensor.brendanbedroom
+
+- platform: mqtt
+  state_topic: 'blemon/lounge/mandyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'MandyLounge'
+
+- platform: mqtt
+  state_topic: 'blemon/rumpus/mandyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'MandyRumpus'
+
+- platform: mqtt
+  state_topic: 'blemon/shed/mandyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'MandyShed'
+
+- platform: mqtt
+  state_topic: 'blemon/bedroom/mandyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'MandyBedroom'
+ 
+- platform: min_max
+  name: "Mandy Home Confidence"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.mandylounge
+    - sensor.mandyrumpus
+    - sensor.mandyshed
+    - sensor.mandybedroom
+    
+- platform: mqtt
+  state_topic: 'blemon/lounge/jenniferphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JenniferLounge'
+
+- platform: mqtt
+  state_topic: 'blemon/rumpus/jenniferphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JenniferRumpus'
+  
+- platform: mqtt
+  state_topic: 'blemon/shed/jenniferphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JenniferShed'
+
+- platform: mqtt
+  state_topic: 'blemon/bedroom/jenniferphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'JenniferBedroom'
+  
+
+- platform: min_max
+  name: "Jennifer Home Confidence"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.jenniferlounge
+    - sensor.jenniferrumpus
+    - sensor.jennifershed
+    - sensor.jenniferbedroom
+    
+
+- platform: mqtt
+  state_topic: 'blemon/lounge/anthonyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'AnthonyLounge'
+
+- platform: mqtt
+  state_topic: 'blemon/rumpus/anthonyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'AnthonyRumpus'
+ 
+- platform: mqtt
+  state_topic: 'blemon/shed/anthonyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'AnthonyShed'
+
+- platform: mqtt
+  state_topic: 'blemon/bedroom/anthonyphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'AnthonyBedroom'
+ 
+- platform: min_max
+  name: "Anthony Home Confidence"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.anthonylounge
+    - sensor.anthonyrumpus
+    - sensor.anthonyshed
+    - sensor.anthonybedroom

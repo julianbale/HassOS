@@ -1,0 +1,12 @@
+- platform: mqtt
+  name: "Front Gate"
+  command_topic: "cmnd/gate/POWER2"
+  state_topic: "cmnd/gateopen/POWER4"
+  qos: 0
+  retain: false
+  payload_open: "ON"
+  payload_close: "ON"
+  state_open: "ON"
+  state_closed: "OFF"
+  optimistic: false
+

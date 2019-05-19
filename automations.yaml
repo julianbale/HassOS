@@ -1,0 +1,403 @@
+- id: '1556138935468'
+  alias: System Database Purge
+  trigger:
+  - at: '12:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      keep_days: 180
+      repack: true
+    service: recorder.purge
+- id: '1556139106327'
+  alias: Front Gate Trigger
+  trigger:
+  - entity_id: switch.front_gate_strobe
+    for: 00:00:5
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.front_gate
+    service: switch.turn_on
+  - delay: 00:00:01
+  - data:
+      entity_id: switch.front_gate
+    service: switch.turn_off
+- id: '1556139201655'
+  alias: Front Gate Strobe Reset
+  trigger:
+  - entity_id: switch.front_gate_strobe
+    for: 00:00:30
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.front_gate_strobe
+    entity_id: switch.front_gate_strobe
+    service: switch.turn_off
+- id: '1556139271336'
+  alias: Outside Lights Evening On
+  trigger:
+  - event: sunset
+    offset: -00:10:00
+    platform: sun
+  condition: []
+  action:
+  - data:
+      brightness_pct: '100'
+      entity_id: light.outside
+    service: light.turn_on
+- id: '1556224316003'
+  alias: Outside Lights Morning Off
+  trigger:
+  - event: sunrise
+    offset: +00:15:00
+    platform: sun
+  condition: []
+  action:
+  - data:
+      entity_id: light.outside
+    service: light.turn_off
+- id: '1556273182447'
+  alias: Notification Julian Home
+  trigger:
+  - entity_id: person.julian
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: The Master is home
+    service: tts.google_say
+- id: '1556273372710'
+  alias: Jennifers Bedroom Light
+  trigger:
+  - entity_id: person.jennnifer
+    for: 00:00:15
+    platform: state
+    to: not_home
+  condition:
+  - condition: state
+    entity_id: person.brendan
+    state: not_home
+  action:
+  - data:
+      entity_id: light.jens_bedroom
+    service: light.turn_off
+- id: '1556273645862'
+  alias: ' PIR trigger Study'
+  trigger:
+  - entity_id: binary_sensor.study_pir
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      brightness_pct: '100'
+      entity_id: light.study01
+    service: light.turn_on
+  - delay: 00:15:00
+  - data:
+      entity_id: light.study01
+    service: light.turn_off
+- id: '1556273928275'
+  alias: PIR trigger Garage
+  trigger:
+  - entity_id: binary_sensor.garage_pir
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.garage_light
+    service: switch.turn_on
+  - delay: 00:15:00
+  - data:
+      entity_id: switch.garage_light
+    service: switch.turn_off
+- id: '1556968190057'
+  alias: Tracker Julian Home
+  trigger:
+  - above: '90'
+    entity_id: sensor.julian_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_julian_home
+    service: input_boolean.turn_on
+  - data:
+      dev_id: julian_bt
+      location_name: home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556968503062'
+  alias: Tracker Julian Not Home
+  trigger:
+  - below: '10'
+    entity_id: sensor.julian_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_julian_home
+    service: input_boolean.turn_off
+  - data:
+      dev_id: julian_bt
+      location_name: not_home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556969810588'
+  alias: Tracker Mandy Home
+  trigger:
+  - above: '90'
+    entity_id: sensor.mandy_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_mandy_home
+    service: input_boolean.turn_on
+  - data:
+      dev_id: mandy_bt
+      location_name: home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556969871603'
+  alias: Tracker Mandy Not Home
+  trigger:
+  - below: '10'
+    entity_id: sensor.mandy_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_mandy_home
+    service: input_boolean.turn_off
+  - data:
+      dev_id: mandy_bt
+      location_name: not_home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556969918845'
+  alias: Tracker Jennifer Home
+  trigger:
+  - above: '90'
+    entity_id: sensor.jennifer_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_jennifer_home
+    service: input_boolean.turn_on
+  - data:
+      dev_id: jennifer_bt
+      location_name: home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556969964542'
+  alias: Tracker Jennifer Not Home
+  trigger:
+  - below: '10'
+    entity_id: sensor.jennifer_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_jennifer_home
+    service: input_boolean.turn_off
+  - data:
+      dev_id: jennifer_bt
+      location_name: not_home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556970047376'
+  alias: Tracker Anthony Home
+  trigger:
+  - above: '90'
+    entity_id: sensor.anthony_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_anthony_home
+    service: input_boolean.turn_on
+  - data:
+      dev_id: anthony_bt
+      location_name: home
+      source_type: bluetooth
+    service: device_tracker.see
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Anthony is here
+    service: tts.google_say
+- id: '1556970072834'
+  alias: Tracker Anthony Not Home
+  trigger:
+  - below: '10'
+    entity_id: sensor.anthony_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_anthony_home
+    service: input_boolean.turn_off
+  - data:
+      dev_id: anthony_bt
+      location_name: not_home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1556970108028'
+  alias: Tracker Bendan Home
+  trigger:
+  - above: '90'
+    entity_id: sensor.brendan_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_brendan_home
+    service: input_boolean.turn_on
+  - data:
+      dev_id: brendan_bt
+      location_name: home
+      source_type: bluetooth
+    service: device_tracker.see
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Brendan is home
+    service: tts.google_say
+- id: '1556970148607'
+  alias: Tracker Brendan Not Home
+  trigger:
+  - below: '10'
+    entity_id: sensor.brendan_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_brendan_home
+    service: input_boolean.turn_off
+  - data:
+      dev_id: brendan_bt
+      location_name: not_home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1557013889216'
+  alias: Notification Front Gate Open
+  trigger:
+  - entity_id: cover.front_gate
+    from: closed
+    platform: state
+    to: open
+  condition: []
+  action:
+  - data:
+      message: Gate just opened
+    service: notify.mobile_app_julian_s_iphone
+- id: '1557014816700'
+  alias: Notification Garage Door Car
+  trigger:
+  - entity_id: cover.garage_left
+    for: 00:05:00
+    from: closed
+    platform: state
+    to: open
+  condition: []
+  action:
+  - data:
+      message: Garage Door Open Car side
+    service: notify.mobile_app_julian_s_iphone
+- id: '1557016195169'
+  alias: Notification Garage Door Bike
+  trigger:
+  - entity_id: cover.garage_right
+    for: 00:05:00
+    from: closed
+    platform: state
+    to: open
+  condition: []
+  action:
+  - data:
+      message: Garage Door Open Bike side
+    service: notify.mobile_app_julian_s_iphone
+- id: '1557032656285'
+  alias: Notification Mandy Home
+  trigger:
+  - entity_id: person.mandy
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Mandy has arrived home
+    service: tts.google_say
+  - data:
+      message: Mandy is safely home
+    service: notify.mobile_app_julian_s_iphone
+- id: '1557034045335'
+  alias: Notification Front Gate Door Bell
+  trigger:
+  - entity_id: binary_sensor.front_gate_door_bell
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Someone is at the gate
+    service: tts.google_say
+  - data:
+      message: Somebody at the Gate
+    service: notify.mobile_app_julian_s_iphone
+  - data:
+      message: Somebody at the Gate
+      title: Front Gate
+    service: notify.ios_mandys_iphone
+- id: '1557222605684'
+  alias: Notification Jennifer Home
+  trigger:
+  - entity_id: person.jennnifer
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Jennifer has arrived home
+    service: tts.google_say
+- id: '1557522558915'
+  alias: Lets Encrypt
+  trigger:
+  - at: 00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      addon: core_letsencrypt
+    service: hassio.addon_restart
+- id: '1558253606948'
+  alias: System Dropbox Sync
+  trigger:
+  - at: 03:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      addon: 7be23ff5_dropbox_sync
+      input:
+        command: upload
+    service: hassio.addon_stdin

@@ -1,0 +1,132 @@
+- platform: mqtt
+  name: "Electric Fence"
+  command_topic: "cmnd/basic01/power"
+  state_topic: "stat/basic01/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Master Bedroom Fan"
+  command_topic: "cmnd/basic02/power"
+  state_topic: "stat/basic02/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+- platform: mqtt
+  name: "Front Gate"
+  command_topic: "cmnd/gate/power1"
+  state_topic: "stat/gate/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+
+- platform: mqtt
+  name: "Front Gate Strobe"
+  command_topic: "cmnd/gate/power2"
+  state_topic: "stat/gate/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: false
+  
+#- platform: mqtt
+#  name: "4chpro01"
+#  command_topic: "cmnd/4chpro01/power1"
+#  state_topic: "stat/4chpro01/POWER1"
+#  qos: 2
+#  payload_on: "ON"
+#  payload_off: "OFF"
+  
+#- platform: mqtt
+#  name: "4chpro02"
+#  command_topic: "cmnd/4chpro01/power2"
+#  state_topic: "stat/4chpro01/POWER2"
+#  qos: 2
+#  payload_on: "ON"
+#  payload_off: "OFF"
+  
+#- platform: mqtt
+#  name: "4chpro03"
+#  command_topic: "cmnd/4chpro01/power3"
+#  state_topic: "stat/4chpro01/POWER3"
+#  qos: 2
+#  payload_on: "ON"
+#  payload_off: "OFF"
+  
+#- platform: mqtt
+#  name: "4chpro04"
+#  command_topic: "cmnd/4chpro01/power4"
+#  state_topic: "stat/4chpro01/POWER4"
+#  qos: 2
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+#- platform: mqtt
+#  name: "NodeMCU1"
+#  command_topic: "cmnd/nodemcu1/power"
+#  state_topic: "stat/nodemcu1/POWER"
+#  qos: 1
+#  payload_on: "ON"
+#  payload_off: "OFF"
+
+- platform: mqtt
+  name: "Garage Light"
+  command_topic: "cmnd/switch01/power"
+  state_topic: "stat/switch01/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Rumpus Amp"
+  command_topic: "cmnd/switch02/power"
+  state_topic: "stat/switch02/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+ 
+- platform: mqtt
+  name: "Master Bedroom TV"
+  command_topic: "cmnd/switch03/power"
+  state_topic: "stat/switch03/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Sonoff 4"
+  command_topic: "cmnd/switch04/power"
+  state_topic: "stat/switch04/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Sonoff 5"
+  command_topic: "cmnd/switch05/power"
+  state_topic: "stat/switch05/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: broadlink
+  host: 192.168.0.120
+  mac: 78:0F77:EC:24:93
+  type: rm_mini
+  switches:
+    receiverpower:
+      command_on: JgCqAFASKBIVEigSFREpEhQSFRQVEhURFRIVESkRKRIUEhUAAsdQEigSFREpEhQSKBIVEhUUFRIUEhUSFBIoEigSFRIVAALWUBIoExQSKBIVEigSFREVFRQSFREVEhURKRIoEhURFQAC1FASKBIVEigSFREpEhQSFRQVEhQSFRIUEigSKRIUEhUAAs1QEigSFREpEhQSKBIVEhUUFRIUEhUSFBIoEigSFRIVAA0FAAAAAAAAAAAAAAAAAAA=
+      command_off: JgCqAFASKBIVEigSFREpEhQSFRQVEhURFRIVESkRKRIUEhUAAsdQEigSFREpEhQSKBIVEhUUFRIUEhUSFBIoEigSFRIVAALWUBIoExQSKBIVEigSFREVFRQSFREVEhURKRIoEhURFQAC1FASKBIVEigSFREpEhQSFRQVEhQSFRIUEigSKRIUEhUAAs1QEigSFREpEhQSKBIVEhUUFRIUEhUSFBIoEigSFRIVAA0FAAAAAAAAAAAAAAAAAAA=
+    receivervideo1:
+      command_on: JgCqAFASFREpEhQSFRIUEigSFRQVEhURFRIVESgSKRIUEhUAAtBQEhUSKBIVEhQSFREpEhQVFREVEhURFRIoEigSFRIUAALpTxIVEigSFRIUEhURKRIUFRURFRIVERUSKBIoEhUSFAAC8E8SFRIoEhUSFBIVESkSFBUVERUSFREVEigSKBIVEhQAAuJQExQSKBIVEhQSFRIoEhUUFRIUEhUSFBIoEigSFRIVAA0FAAAAAAAAAAAAAAAAAAA=
+      command_off: JgCqAFASFREpEhQSFRIUEigSFRQVEhURFRIVESgSKRIUEhUAAtBQEhUSKBIVEhQSFREpEhQVFREVEhURFRIoEigSFRIUAALpTxIVEigSFRIUEhURKRIUFRURFRIVERUSKBIoEhUSFAAC8E8SFRIoEhUSFBIVESkSFBUVERUSFREVEigSKBIVEhQAAuJQExQSKBIVEhQSFRIoEhUUFRIUEhUSFBIoEigSFRIVAA0FAAAAAAAAAAAAAAAAAAA=
