@@ -13,22 +13,15 @@ http:
   server_port: !secret server_port
   ssl_certificate: !secret ssl_certificate
   ssl_key: !secret ssl_key
-#  use_x_forwarded_for: true
-#  trusted_proxies:
-#    - 127.0.0.1
-#    - ::1
   ip_ban_enabled: true
   login_attempts_threshold: 5
 
 default_config:
 
-
-
 camera:
   - platform: bom
     location: Sydney
 
-#Services 
 frontend:
 history:
 logbook:
@@ -43,10 +36,6 @@ ios:
 
 logger:
   default: info
-
-#shell_command:
-#  disco_off: echo -e -n "\x01\x08\x00\xF2\x51\x01\x00\x05\x01\x51" > /dev/ttyACM0
-#  disco_on: echo -e -n "\x01\x08\x00\xF2\x51\x01\x01\x05\x01\x50" > /dev/ttyACM0
 
 alarm_control_panel:
   - platform: manual
@@ -63,10 +52,6 @@ alarm_control_panel:
       pending_time: 30
     triggered:
       pending_time: 0
-
-#zwave:
-#  usb_path: /dev/ttyACM0
-#  network_key: "0x2e, 0xcc, 0xab, 0x1c, 0xa3, 0x7f, 0x0e, 0xb5, 0x70, 0x71, 0x2d, 0x98, 0x25, 0x43, 0xee, 0x0c"
 
 nest:
   client_id: !secret nest_id
@@ -120,10 +105,6 @@ discovery:
   ignore:
   - apple_tv
   - samsung_tv
-
-  
-#recorder:
-#  db_url: !secret databaseurl
   
 speedtestdotnet:
   scan_interval:
@@ -147,20 +128,3 @@ cover: !include covers.yaml
 #device_tracker: !include device_tracker.yaml
 light: !include lights.yaml
 
-#panel_iframe:
-#  configurator:
-#    title: Configurator
-#    icon: mdi:wrench
-#    url: http://192.168.0.37:8123/configurator
-#  nodered:
-#    title: Node-RED
-#    icon: mdi:sitemap
-#    url: http://192.168.0.37:1880
-#  tasmoadmin:
-#    title: TasmoAdmin
-#    icon: mdi:access-point-network
-#    url: https://dsm.thebalefamily.com:9541
-#  esphome:
-#    title: ESPHome
-#    icon: mdi:chip
-#    url: http://192.168.0.37:6052
