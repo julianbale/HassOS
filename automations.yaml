@@ -1,7 +1,7 @@
 - id: '1556138935468'
   alias: System Database Purge
   trigger:
-  - at: '12:00'
+  - at: '12:05'
     platform: time
   condition: []
   action:
