@@ -19,3 +19,5 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 cloud.yaml
+input_select.yaml 
+device_tracker.yaml
