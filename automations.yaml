@@ -104,26 +104,27 @@
       brightness_pct: '100'
       entity_id: light.study01
     service: light.turn_on
-  - delay: 00:15:00
+  - delay: 00:35
   - data:
       entity_id: light.study01
     service: light.turn_off
+  - data:
+      message: Study Light Off
+    service: notify.mobile_app_julian_s_iphone
 - id: '1556273928275'
-  alias: PIR trigger Garage
+  alias: Garage Light On
   trigger:
-  - entity_id: binary_sensor.garage_pir
-    from: 'off'
+  - entity_id: cover.garage_left
+    from: closed
     platform: state
-    to: 'on'
+  - entity_id: cover.garage_right
+    from: closed
+    platform: state
   condition: []
   action:
   - data:
       entity_id: switch.garage_light
     service: switch.turn_on
-  - delay: 00:15:00
-  - data:
-      entity_id: switch.garage_light
-    service: switch.turn_off
 - id: '1556968190057'
   alias: Tracker Julian Home
   trigger:
@@ -272,10 +273,6 @@
       location_name: home
       source_type: bluetooth
     service: device_tracker.see
-  - data:
-      entity_id: media_player.lounge_speaker
-      message: Brendan is home
-    service: tts.google_say
 - id: '1556970148607'
   alias: Tracker Brendan Not Home
   trigger:
@@ -401,3 +398,30 @@
       input:
         command: upload
     service: hassio.addon_stdin
+- id: '1559039228081'
+  alias: Garage Light Off
+  trigger:
+  - entity_id: cover.garage_left
+    platform: state
+    to: closed
+  - entity_id: cover.garage_right
+    platform: state
+    to: closed
+  condition: []
+  action:
+  - data:
+      entity_id: switch.garage_light
+    service: homeassistant.turn_off
+- id: '1559963625788'
+  alias: Notification Brendan Home
+  trigger:
+  - entity_id: person.brendan
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Brendan is home
+    service: tts.google_say

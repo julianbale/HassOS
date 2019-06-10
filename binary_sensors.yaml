@@ -1,4 +1,20 @@
 - platform: mqtt
+  name: 'Front Door Open'
+  payload_on: "D9870A"
+  payload_off: "D9870E"
+  device_class: door
+  state_topic: "tele/rfbridge/RESULT"
+  value_template: '{{ value_json.RfReceived.Data }}'
+
+#- platform: mqtt
+#  name: 'Front Door'
+#  payload_on: "D9870A"
+#  payload_off: "D9870E"
+#  device_class: window
+#  state_topic: "tele/rfbridge/RESULT"
+#  value_template: '{{ value_json.RfReceived.Data }}'
+
+- platform: mqtt
   name: 'Garage PIR'
   payload_on: "E201DE"
   device_class: motion

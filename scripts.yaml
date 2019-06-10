@@ -1,0 +1,53 @@
+'1558689180791':
+  alias: Volume Mute
+  sequence:
+  - data:
+      command: mute
+      device: amp
+      entity_id: remote.living_room_harmony_hub
+    service: remote.send_command
+'1558689622882':
+  alias: Volume Up
+  sequence:
+  - data:
+      command: volumeup
+      device: amp
+      entity_id: remote.living_room_harmony_hub
+    service: remote.send_command
+'1558689655751':
+  alias: Volume Down
+  sequence:
+  - data:
+      command: volumedown
+      device: amp
+      entity_id: remote.living_room_harmony_hub
+    service: remote.send_command
+'1558689884377':
+  alias: AC Off
+  sequence:
+  - data:
+      command: Power Off
+      device: Mitsubishi Climate Control
+      entity_id: remote.living_room_harmony_hub
+    service: remote.send_command
+'1558690162551':
+  alias: Kodi
+  sequence:
+  - data:
+      activity: Kodi
+      entity_id: remote.living_room_harmony_hub
+    service: remote.turn_on
+'1558690199348':
+  alias: Netflix
+  sequence:
+  - data:
+      activity: Netflix
+      entity_id: remote.living_room_harmony_hub
+    service: remote.turn_on
+'1558690260632':
+  alias: Live TV
+  sequence:
+  - data:
+      activity: Live TV
+      entity_id: remote.living_room_harmony_hub
+    service: remote.on

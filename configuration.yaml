@@ -1,11 +1,11 @@
 #Base Config
 homeassistant:
-  name: TheBaleFamily-New
-  latitude: !secret home_latitude
-  longitude: !secret home_longitude
-  elevation: !secret home_elevation
-  unit_system: metric
-  time_zone: Australia/Sydney
+#  name: TheBaleFamily-New
+#  latitude: !secret home_latitude
+#  longitude: !secret home_longitude
+#  elevation: !secret home_elevation
+#  unit_system: metric
+#  time_zone: Australia/Sydney
   customize: !include customize.yaml
 
 http:
@@ -116,7 +116,6 @@ speedtestdotnet:
     - upload
 
 #Includes
-cloud: !include cloud.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 sensor: !include sensors.yaml
@@ -124,7 +123,8 @@ binary_sensor: !include binary_sensors.yaml
 input_boolean: !include input_boolean.yaml
 switch: !include switches.yaml
 cover: !include covers.yaml
+light: !include lights.yaml
+script: !include scripts.yaml
 #input_select: !include input_select.yaml 
 #device_tracker: !include device_tracker.yaml
-light: !include lights.yaml
-
+#cloud: !include cloud.yaml
