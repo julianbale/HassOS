@@ -1,7 +1,7 @@
 - platform: mqtt
   name: 'Front Door Open'
-  payload_on: "D9870A"
-  payload_off: "D9870E"
+  payload_on: "041ED3"
+  payload_off: "041ED9"
   device_class: door
   state_topic: "tele/rfbridge/RESULT"
   value_template: '{{ value_json.RfReceived.Data }}'
