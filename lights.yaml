@@ -26,6 +26,7 @@
     - light.outside_garage_2
     - light.outside_back_1
     - light.outside_back_2
+    - light.lifx_pls_a19_2e735c
     
 - platform: group
   name: Kitchen Lights

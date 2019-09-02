@@ -102,18 +102,18 @@
   retain: true
 
 - platform: mqtt
-  name: "Sonoff 4"
-  command_topic: "cmnd/switch04/power"
-  state_topic: "stat/switch04/POWER"
+  name: "Vive Sat 1"
+  command_topic: "cmnd/vivesat1/power"
+  state_topic: "stat/vivesat1/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"
   retain: true
 
 - platform: mqtt
-  name: "Sonoff 5"
-  command_topic: "cmnd/switch05/power"
-  state_topic: "stat/switch05/POWER"
+  name: "Vive Sat 2"
+  command_topic: "cmnd/vivesat2/power"
+  state_topic: "stat/vivesat2/POWER"
   qos: 1
   payload_on: "ON"
   payload_off: "OFF"

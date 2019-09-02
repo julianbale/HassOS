@@ -19,3 +19,5 @@ input_boolean.is_mandy_home:
   icon: mdi:human-female
 binary_sensor.entryway_camera_person_detected:
   device_class: motion
+group.vive:
+  device_class: power

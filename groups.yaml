@@ -1,0 +1,5 @@
+vive:
+  name: Vive
+  entities:
+    - switch.vive_sat_1
+    - switch.vive_sat_2

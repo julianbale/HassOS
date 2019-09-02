@@ -49,8 +49,7 @@
   condition: []
   action:
   - data:
-      brightness_pct: '100'
-      entity_id: light.outside
+      entity_id: light.outside_lights
     service: light.turn_on
 - id: '1556224316003'
   alias: Outside Lights Morning Off
@@ -61,7 +60,7 @@
   condition: []
   action:
   - data:
-      entity_id: light.outside
+      entity_id: light.outside_lights
     service: light.turn_off
 - id: '1556273182447'
   alias: Notification Julian Home
