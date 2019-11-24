@@ -21,3 +21,8 @@ binary_sensor.entryway_camera_person_detected:
   device_class: motion
 group.vive:
   device_class: power
+input_boolean.is_pops_home:
+  friendly_name: Pop's presence
+  icon: mdi:human-male
+sensor.pops_home_confidence:
+  friendly_name: Pops

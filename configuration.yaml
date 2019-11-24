@@ -10,11 +10,13 @@ homeassistant:
 
 http:
   base_url: !secret base_url
-  server_port: !secret server_port
-  ssl_certificate: !secret ssl_certificate
-  ssl_key: !secret ssl_key
+  server_port: 8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
   ip_ban_enabled: true
   login_attempts_threshold: 5
+  
+
 
 default_config:
 
@@ -69,6 +71,10 @@ nest:
 tts:
   - platform: google_translate
     service_name: google_say
+#    cache_dir: /tmp/tts
+#    time_memory: 300
+#    base_url: http://192.168.0.100:8123
+
 
 ifttt:
   key: !secret ifttt_api

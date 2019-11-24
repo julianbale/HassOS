@@ -288,3 +288,39 @@
     - sensor.anthonyrumpus
     - sensor.anthonyshed
     - sensor.anthonybedroom
+    
+    
+- platform: mqtt
+  state_topic: 'blemon/lounge/popsphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'PopsLounge'
+
+- platform: mqtt
+  state_topic: 'blemon/rumpus/popsphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'PopsRumpus'
+
+- platform: mqtt
+  state_topic: 'blemon/shed/popsphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'PopsShed'
+
+- platform: mqtt
+  state_topic: 'blemon/bedroom/popsphone'
+  value_template: '{{ value_json.confidence }}'
+  unit_of_measurement: '%'
+  name: 'PopsBedroom'
+  
+  
+- platform: min_max
+  name: "Pops Home Confidence"
+  type: max
+  round_digits: 0
+  entity_ids:
+    - sensor.popslounge
+    - sensor.popsrumpus
+    - sensor.popsshed
+    - sensor.popsbedroom

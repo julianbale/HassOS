@@ -41,18 +41,20 @@
 - platform: group
   name: Master Bedroom Lights
   entities:
-     - light.master_bed_1
-     - light.master_bed_2
-     - light.master_bed_3
-     - light.master_bed_4
-     - light.master_bed_5
-     - light.master_bed_6
+     - light.master_bedroom_2
+#     - light.master_bed_1
+#     - light.master_bed_2
+#     - light.master_bed_3
+#     - light.master_bed_4
+#     - light.master_bed_5
+#     - light.master_bed_6
      
 - platform: group
   name: Rumpus Lights
   entities:
-     - light.rumpus_1
-     - light.rumpus_2
-     - light.rumpus_3
-     - light.rumpus_4
-     - light.rumpus_5
+     - light.rumpus_6
+#     - light.rumpus_1
+#     - light.rumpus_2
+#     - light.rumpus_3
+#     - light.rumpus_4
+#     - light.rumpus_5

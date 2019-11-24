@@ -337,7 +337,7 @@
   action:
   - data:
       entity_id: media_player.lounge_speaker
-      message: Mandy has arrived home
+      message: Quick, do the Kitchen, Mandy is home
     service: tts.google_say
   - data:
       message: Mandy is safely home
@@ -373,7 +373,7 @@
   action:
   - data:
       entity_id: media_player.lounge_speaker
-      message: Jennifer has arrived home
+      message: The princess has returned
     service: tts.google_say
 - id: '1557522558915'
   alias: Lets Encrypt
@@ -422,5 +422,48 @@
   action:
   - data:
       entity_id: media_player.lounge_speaker
-      message: Brendan is home
+      message: The house is now protected with fire power
     service: tts.google_say
+- id: '1574569357786'
+  alias: Notification Pops Home
+  description: ''
+  trigger:
+  - entity_id: person.pops
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.lounge_speaker
+      message: Pops is ready to crack a guinness
+    service: tts.google_say
+- id: '1574569798464'
+  alias: Tracker Pops Home
+  description: ''
+  trigger:
+  - above: '90'
+    entity_id: sensor.pops_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_pops_home
+    service: input_boolean.turn_on
+  - data:
+      dev_id: pops_bt
+      location_name: home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1574580478110'
+  alias: Tracker Pops Not Home
+  description: ''
+  trigger:
+  - below: '10'
+    entity_id: sensor.pops_home_confidence
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.is_pops_home
+    service: input_boolean.turn_off
