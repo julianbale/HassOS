@@ -17,6 +17,15 @@
   retain: true
   
 - platform: mqtt
+  name: "Jens Bedroom Fan"
+  command_topic: "cmnd/basic07/power"
+  state_topic: "stat/basic07/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+  
+- platform: mqtt
   name: "Front Gate"
   command_topic: "cmnd/gate/power1"
   state_topic: "stat/gate/POWER1"

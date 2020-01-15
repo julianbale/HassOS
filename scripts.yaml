@@ -22,14 +22,6 @@
       device: amp
       entity_id: remote.living_room_harmony_hub
     service: remote.send_command
-'1558689884377':
-  alias: AC Off
-  sequence:
-  - data:
-      command: Power Off
-      device: Mitsubishi Climate Control
-      entity_id: remote.living_room_harmony_hub
-    service: remote.send_command
 '1558690162551':
   alias: Kodi
   sequence:
@@ -48,6 +40,18 @@
   alias: Live TV
   sequence:
   - data:
-      activity: Live TV
+      activity: TV
       entity_id: remote.living_room_harmony_hub
-    service: remote.on
+    service: remote.turn_on
+'1576966435148':
+  alias: Turn Off
+  sequence:
+  - data: {}
+    entity_id: remote.living_room_harmony_hub
+    service: remote.turn_off
+'1576972915614':
+  alias: BLE Restart
+  sequence:
+  - data:
+      topic: blemon/scan/restart
+    service: mqtt.publish

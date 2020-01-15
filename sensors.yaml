@@ -34,15 +34,6 @@
 #  - memory_available_swap
 #  - memory_total_swap
 
-- platform: pi_hole
-  host: hassio.thebalefamily.com:4865
-  ssl: true
-  monitored_conditions:
-    - ads_blocked_today
-    - dns_queries_today
-    - unique_clients
-
-
 #Didn't seem to work
 #- platform: transport_nsw
 #  name: 'Riverstone'
@@ -83,6 +74,7 @@
     - rel_hum
     - weather
     
+- platform: google_wifi
 
 - platform: mqtt
   name: "BLE Rumpus Online"

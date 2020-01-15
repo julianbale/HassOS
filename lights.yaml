@@ -5,6 +5,7 @@
   name: Garage Light
   entity_id: switch.garage_light
 
+#Lifx
 - platform: group
   name: Lounge Lights
   entities: 
@@ -13,21 +14,7 @@
    - light.lounge03
    - light.lounge04
    - light.lounge05
-   
-- platform: group
-  name: Outside Lights
-  entities: 
-    - light.outside_front_1
-    - light.outside_front_2
-    - light.outside_front_3
-    - light.outside_front_4
-    - light.outside_front_5
-    - light.outside_garage_1
-    - light.outside_garage_2
-    - light.outside_back_1
-    - light.outside_back_2
-    - light.lifx_pls_a19_2e735c
-    
+
 - platform: group
   name: Kitchen Lights
   entities:
@@ -37,7 +24,24 @@
     - light.kitchen04
     - light.kitchen05
     - light.kitchen06
+
+#Phillips   
+- platform: group
+  name: Outside Lights
+  entities:
+    - light.outside
+#    - light.outside_front_1
+#    - light.outside_front_2
+#    - light.outside_front_3
+#    - light.outside_front_4
+#    - light.outside_front_5
+#    - light.outside_garage_1
+#    - light.outside_garage_2
+#    - light.outside_back_1
+#    - light.outside_back_2
+
     
+#Osram
 - platform: group
   name: Master Bedroom Lights
   entities:

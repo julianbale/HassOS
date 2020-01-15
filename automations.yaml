@@ -76,7 +76,7 @@
       message: The Master is home
     service: tts.google_say
 - id: '1556273372710'
-  alias: Jennifers Bedroom Light
+  alias: Away Jennifer
   trigger:
   - entity_id: person.jennnifer
     for: 00:00:15
@@ -87,9 +87,11 @@
     entity_id: person.brendan
     state: not_home
   action:
-  - data:
-      entity_id: light.jens_bedroom
+  - data: {}
+    entity_id: light.jen01
     service: light.turn_off
+  - entity_id: switch.jens_bedroom_fan
+    service: switch.turn_off
 - id: '1556273645862'
   alias: ' PIR trigger Study'
   trigger:
@@ -103,13 +105,6 @@
       brightness_pct: '100'
       entity_id: light.study01
     service: light.turn_on
-  - delay: 00:35
-  - data:
-      entity_id: light.study01
-    service: light.turn_off
-  - data:
-      message: Study Light Off
-    service: notify.mobile_app_julian_s_iphone
 - id: '1556273928275'
   alias: Garage Light On
   trigger:
@@ -386,7 +381,7 @@
       addon: core_letsencrypt
     service: hassio.addon_restart
 - id: '1558253606948'
-  alias: System Dropbox Sync
+  alias: System Dropbox Sync and BLE Restart
   trigger:
   - at: 03:00
     platform: time
@@ -397,6 +392,9 @@
       input:
         command: upload
     service: hassio.addon_stdin
+  - data:
+      topic: blemon/scan/restart
+    service: mqtt.publish
 - id: '1559039228081'
   alias: Garage Light Off
   trigger:
@@ -467,3 +465,24 @@
   - data:
       entity_id: input_boolean.is_pops_home
     service: input_boolean.turn_off
+  - data:
+      dev_id: pops_bt
+      location_name: not_home
+      source_type: bluetooth
+    service: device_tracker.see
+- id: '1576987377290'
+  alias: Away Pops
+  description: ''
+  trigger:
+  - entity_id: person.pops
+    event: leave
+    platform: zone
+    zone: zone.home
+  condition: []
+  action:
+  - alias: ''
+    data: {}
+    entity_id: light.guest_bedroom
+    service: light.turn_off
+  - entity_id: light.guest_lamp
+    service: light.turn_off

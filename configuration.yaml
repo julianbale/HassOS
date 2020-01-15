@@ -16,8 +16,6 @@ http:
   ip_ban_enabled: true
   login_attempts_threshold: 5
   
-
-
 default_config:
 
 camera:
@@ -30,6 +28,16 @@ wemo:
     - 192.168.0.117
     - 192.168.0.118
 
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb
+  max_retries: 3
+  default_measurement: state
+
+
 frontend:
 history:
 logbook:
@@ -40,7 +48,15 @@ conversation:
 updater:
 system_health:
 person:
-ios:
+#ios:
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+
+climate:
+  - platform: sensibo
+    api_key: !secret sensibo_api
 
 logger:
   default: info
@@ -71,10 +87,6 @@ nest:
 tts:
   - platform: google_translate
     service_name: google_say
-#    cache_dir: /tmp/tts
-#    time_memory: 300
-#    base_url: http://192.168.0.100:8123
-
 
 ifttt:
   key: !secret ifttt_api
